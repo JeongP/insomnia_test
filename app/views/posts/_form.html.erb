@@ -1,0 +1,42 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_field :content %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :image_url %>
+  </div>
+  
+  <div class="field">
+    <%= f.fields_for :hashtags do |h| %><br>
+    <li>
+      <%= h.label :해시태그 %>
+      <%= h.text_field :title %>
+    </li>
+    <%end%>
+  </div>
+  
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
